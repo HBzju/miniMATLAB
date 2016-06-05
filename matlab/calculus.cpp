@@ -9,14 +9,17 @@ calculus::calculus(QWidget *parent)
     :QWidget(parent)
 {
     input=new QTextEdit(this);
-    input->setFixedSize(300,150);
+    input->setFixedSize(480,300);
     input->setPlaceholderText("请输入函数（变量为x）");
     output=new QLabel(tr("Answer:"),this);
     output->setFixedSize(300,40);
     output->setWordWrap(true);
     button=new QPushButton(tr("Calculate"),this);
+    button->setFixedSize(100,20);
     range_left=new QLineEdit("");
     range_right=new QLineEdit("");
+    range_left->setFixedWidth(180);
+    range_right->setFixedWidth(180);
     range_left->setPlaceholderText("积分下限");
     range_right->setPlaceholderText("积分上限");
 
@@ -25,9 +28,9 @@ calculus::calculus(QWidget *parent)
     Hlayout->addWidget(range_right);
 
     QVBoxLayout *Vlayout=new QVBoxLayout;
-    Vlayout->addWidget(input);
+    Vlayout->addWidget(input,0,Qt::AlignHCenter);
     Vlayout->addLayout(Hlayout);
-    Vlayout->addWidget(output);
+    Vlayout->addWidget(output,0,Qt::AlignHCenter);
     Vlayout->addWidget(button,0,Qt::AlignHCenter);
 
     connect(button,SIGNAL(clicked()),this,SLOT(Tansfer()));

@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     calculus.cpp \
-    integrate.cpp
+    integrate.cpp \
+    matrix.cpp
 
 HEADERS  += mainwindow.h \
     calculus.h \
-    integrate.h
+    integrate.h \
+    matrix.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
