@@ -6,7 +6,8 @@
 #include <QAction>
 #include <QMenu>
 #include <calculus.h>
-#include <matrix.h>
+#include <Matrix_YW.h>
+#include <option.h>
 
 namespace Ui {
 class MainWindow;
@@ -28,8 +29,8 @@ private slots:
     void setIntegrationWidget();
 private:
     calculus *cal;
-    matrix *mt;
-    //sort st;
+    Matrix_YW *mt;
+    option *st;
     //equation eq;
 };
 

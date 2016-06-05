@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>matrix</class>
+ <widget class="QWidget" name="matrix">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>662</width>
+    <height>373</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Matrix Sort</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>275</x>
+     <y>12</y>
+     <width>113</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QRadioButton" name="Row_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>10</y>
+           <width>91</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Row</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="Row">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>40</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="Col_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>70</y>
+           <width>91</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Col</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="Col">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>100</y>
+           <width>91</width>
+           <height>21</height>
+          </rect>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPushButton" name="SORT">
+      <property name="text">
+       <string>SORT</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string/>
+        </property>
+        <widget class="QRadioButton" name="AscendingOrder">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>20</y>
+           <width>81</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Asc</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="DescendingOrder">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>70</y>
+           <width>115</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Des</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QTextEdit" name="source">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>12</y>
+     <width>256</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>请顺序输入矩阵元素，用空格隔开。</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="result">
+   <property name="geometry">
+    <rect>
+     <x>395</x>
+     <y>12</y>
+     <width>256</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Row和Col默认从0开始。</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

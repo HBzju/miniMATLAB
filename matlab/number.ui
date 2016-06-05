@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>number</class>
+ <widget class="QWidget" name="number">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>487</width>
+    <height>316</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Number Sort</string>
+  </property>
+  <widget class="QTextEdit" name="source">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>461</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>请输入数字，以空格隔开。</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="AscendingOrder">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ascending Order</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="DescendingOrder">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>140</y>
+     <width>161</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Descending Order</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="SORT">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>140</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SORT</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="result">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>180</y>
+     <width>461</width>
+     <height>121</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

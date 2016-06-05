@@ -1,17 +1,17 @@
-#include "matrix.h"
+#include "Matrix_YW.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLayout>
 #include <iostream>
 
-matrix::matrix(QWidget *parent)
+Matrix_YW::Matrix_YW(QWidget *parent)
     :QWidget(parent)
 {
     input1=new QTextEdit;
     input2=new QTextEdit;
     output=new QTextEdit;
-    input1->setPlaceholderText("Input Your First Matrix");
-    input2->setPlaceholderText("Input Your Second Matrix");
+    input1->setPlaceholderText("Input Your First Matrix_YW");
+    input2->setPlaceholderText("Input Your Second Matrix_YW");
     output->setPlaceholderText("Your answer is here");
     input1->setFixedSize(280,200);
     input2->setFixedSize(280,200);
@@ -42,22 +42,22 @@ matrix::matrix(QWidget *parent)
 
     setLayout(vlayout2);
 
-    connect(add,SIGNAL(clicked(bool)),this,SLOT(addMatrix()));
+    connect(add,SIGNAL(clicked(bool)),this,SLOT(addMatrix_YW()));
     connect(this,SIGNAL(setOutput(const QString&)),output,SLOT(setText(const QString&)));
 }
 
-matrix::~matrix()
+Matrix_YW::~Matrix_YW()
 {
 }
 
-void matrix::Output(string &op)
+void Matrix_YW::Output(string &op)
 {
     QString QT_op;
     QT_op=QString::fromStdString(op);
     emit setOutput(QT_op);
 }
 
-void matrix::getInput(string &ip1,string &ip2)
+void Matrix_YW::getInput(string &ip1,string &ip2)
 {
     ip1=input1->toPlainText().toStdString();
     ip2=input2->toPlainText().toStdString();
@@ -65,23 +65,23 @@ void matrix::getInput(string &ip1,string &ip2)
 
 /*-------------------coding here---------------------------------*/
 
-void matrix::addMatrix()
+void Matrix_YW::addMatrix_YW()
 {
     string ip1,ip2,op;
     getInput(ip1,ip2);
-    matrixAddOperation(ip1,ip2,op);
+    Matrix_YWAddOperation(ip1,ip2,op);
     Output(op);
 }
 
-/*void matrix::minusMatrix()
+/*void Matrix_YW::minusMatrix_YW()
 {
     string ip1,ip2,op;
     getInput(ip1,ip2);
-    matrixMinusOperation(ip1,ip2,op);
+    Matrix_YWMinusOperation(ip1,ip2,op);
     Output(op);
 }*/
 
-void matrix::matrixAddOperation(string &ip1,string &ip2,string &op)
+void Matrix_YW::Matrix_YWAddOperation(string &ip1,string &ip2,string &op)
 {
     op=ip1+ip2;
 }

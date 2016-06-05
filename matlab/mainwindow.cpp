@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     mt=NULL;
     cal=NULL;
-    //st=NULL;
+    st=NULL;
     //eq=NULL;
     setFixedSize(640,480);
     QAction *sort=new QAction("Sort",this);
@@ -49,17 +49,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::setSortWidget()
 {
-    /*if(st!=NULL)return;
+    if(st!=NULL)return;
     deleteNowCentralWidget();
-    st=new sort(this);
-    setCentralWidget(st);*/
+    st=new option(this);
+    setCentralWidget(st);
 }
 
 void MainWindow::setMatrixWidget()
 {
     if(mt!=NULL)return;
     deleteNowCentralWidget();
-    mt=new matrix(this);
+    mt=new Matrix_YW(this);
     setCentralWidget(mt);
 }
 
@@ -89,9 +89,10 @@ void MainWindow::deleteNowCentralWidget()
         delete mt;
         mt=NULL;
     }
-    /*else if(st!=NULL){
+    else if(st!=NULL){
         delete st;
-    }
+        st=NULL;
+    }/*
     else if(eq!=NULL){
         delete eq;
     }

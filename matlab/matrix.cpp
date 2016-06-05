@@ -1,85 +1,118 @@
+#include "ui_matrix.h"
 #include "matrix.h"
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLayout>
 #include <iostream>
+#include <algorithm>
+using namespace std;
 
-matrix::matrix(QWidget *parent)
-    :QWidget(parent)
+matrix::matrix(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::matrix)
 {
-    input1=new QTextEdit;
-    input2=new QTextEdit;
-    output=new QTextEdit;
-    input1->setPlaceholderText("Input Your First Matrix");
-    input2->setPlaceholderText("Input Your Second Matrix");
-    output->setPlaceholderText("Your answer is here");
-    input1->setFixedSize(280,200);
-    input2->setFixedSize(280,200);
-    output->setFixedSize(280,200);
-    output->setReadOnly(true);
-    add=new QPushButton(tr("&ADD"));
-    minus=new QPushButton(tr("&MINUS"));
-    add->setFixedWidth(280);
-    minus->setFixedWidth(280);
-    tips=new QLabel("应嘤嘤的矩阵计算工具~");
-
-    QHBoxLayout *hlayout1=new QHBoxLayout;
-    hlayout1->addWidget(input1);
-    hlayout1->addWidget(input2);
-
-    QVBoxLayout *vlayout1=new QVBoxLayout;
-    vlayout1->addWidget(add);
-    vlayout1->addWidget(minus);
-
-    QHBoxLayout *hlayout2=new QHBoxLayout;
-    hlayout2->addLayout(vlayout1);
-    hlayout2->addWidget(output);
-
-    QVBoxLayout *vlayout2=new QVBoxLayout;
-    vlayout2->addWidget(tips);
-    vlayout2->addLayout(hlayout1);
-    vlayout2->addLayout(hlayout2);
-
-    setLayout(vlayout2);
-
-    connect(add,SIGNAL(clicked(bool)),this,SLOT(addMatrix()));
-    connect(this,SIGNAL(setOutput(const QString&)),output,SLOT(setText(const QString&)));
+    ui->setupUi(this);
 }
 
 matrix::~matrix()
 {
+    delete ui;
 }
-
-void matrix::Output(string &op)
+int m;
+bool cmpa(double* a,double* b)
 {
-    QString QT_op;
-    QT_op=QString::fromStdString(op);
-    emit setOutput(QT_op);
+    return a[m]<b[m];//升序
 }
-
-void matrix::getInput(string &ip1,string &ip2)
+bool cmpd(double* a,double* b)
 {
-    ip1=input1->toPlainText().toStdString();
-    ip2=input2->toPlainText().toStdString();
+    return a[m]>b[m];//降序
 }
-
-/*-------------------coding here---------------------------------*/
-
-
-
-
-
-void matrix::addMatrix()
+void matrix::on_SORT_clicked()
 {
-    string ip1,ip2,op;
-    getInput(ip1,ip2);
-    matrixAddOperation(ip1,ip2,op);
-    Output(op);
-}
+    QString source=ui->source->toPlainText();
+    QStringList sRow=source.split("\n", QString::SkipEmptyParts);//用换行分割
+    QStringList* Matrix=new QStringList[sRow.size()];
+    for(int i=0;i<sRow.size();i++){
+        Matrix[i]=sRow[i].split(" ",QString::SkipEmptyParts);
+        if(Matrix[i].size()!=Matrix[0].size()){
+            QString output="矩阵格式不对!";
+            ui->result->setPlainText(output);
+            return;
+        }
+    }
+    if(ui->Row_2->isChecked()){//按矩阵的某行进行排序
+        m=ui->Row->value();
+        if(m>sRow.size()){
+            QString output="行数超过限制!";
+            ui->result->setPlainText(output);
+            return;
+        }
+        double** col=new double*[Matrix[0].size()];
+        for(int i=0;i<Matrix[0].size();i++){
+            col[i]=new double[sRow.size()];
+        }
+        for(int i=0;i<sRow.size();i++){
+            for(int j=0;j<Matrix[0].size();j++){
+                col[j][i]=Matrix[i][j].toDouble();//QString转Double
+            }
+        }
+        if(ui->AscendingOrder->isChecked())
+            sort(col,col+Matrix[0].size(),cmpa);
+        else if(ui->DescendingOrder->isChecked())
+            sort(col,col+Matrix[0].size(),cmpd);
+        else{
+            QString output="请选择排序方式!";
+            ui->result->setPlainText(output);
+            return;
+        }
+        QString output;
+        for(int i=0;i<sRow.size();i++){
+            for(int j=0;j<Matrix[0].size();j++){
+                output.append(QString::number(col[j][i],'g',10));
+                output.append(" ");
+            }
+            output.append("\n");
+        }
+        ui->result->setPlainText(output);
+
+    }
+    else if(ui->Col_2->isChecked()){//按矩阵的列进行排序
+        m=ui->Col->value();
+        if(m>Matrix[0].size()){
+            QString output="列数超过限制!";
+            ui->result->setPlainText(output);
+            return;
+        }
+        double** row=new double*[sRow.size()];
+        for(int i=0;i<sRow.size();i++){
+            row[i]=new double[Matrix[0].size()];
+        }
+        for(int i=0;i<sRow.size();i++){
+            for(int j=0;j<Matrix[0].size();j++){
+                row[i][j]=Matrix[i][j].toDouble();//QString转Double
+            }
+        }
+        if(ui->AscendingOrder->isChecked())
+            sort(row,row+sRow.size(),cmpa);
+        else if(ui->DescendingOrder->isChecked())
+            sort(row,row+sRow.size(),cmpd);
+        else{
+            QString output="请选择排序方式!";
+            ui->result->setPlainText(output);
+            return;
+        }
+        QString output;
+        for(int i=0;i<sRow.size();i++){
+            for(int j=0;j<Matrix[0].size();j++){
+                output.append(QString::number(row[i][j],'g',10));
+                output.append(" ");
+            }
+            output.append("\n");
+        }
+        ui->result->setPlainText(output);
+    }
+    else{
+        QString output="请选择排序方式!";
+        ui->result->setPlainText(output);
+        return;
+    }
 
 
-
-void matrix::matrixAddOperation(string &ip1,string &ip2,string &op)
-{
-    op=ip1+ip2;
 }

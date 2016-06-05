@@ -16,11 +16,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     calculus.cpp \
     integrate.cpp \
-    matrix.cpp
+    Matrix_YW.cpp \
+    matrix.cpp \
+    number.cpp \
+    option.cpp
 
 HEADERS  += mainwindow.h \
     calculus.h \
     integrate.h \
-    matrix.h
+    Matrix_YW.h \
+    matrix.h \
+    number.h \
+    option.h
 
-FORMS    +=
+FORMS    += \
+    matrix.ui \
+    number.ui \
+    option.ui
