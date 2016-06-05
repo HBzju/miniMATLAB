@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mt=NULL;
     cal=NULL;
     st=NULL;
-    //eq=NULL;
+    eq=NULL;
     setFixedSize(640,480);
     QAction *sort=new QAction("Sort",this);
     QAction *matrix=new QAction("Matrix",this);
@@ -65,10 +65,10 @@ void MainWindow::setMatrixWidget()
 
 void MainWindow::setEquationWidget()
 {
-    /*if(eq!=NULL)return;
+    if(eq!=NULL)return;
     deleteNowCentralWidget();
-    eq=new equation(this);
-    setCentralWidget(eq);*/
+    eq=new equation_xs(this);
+    setCentralWidget(eq);
 }
 
 void MainWindow::setIntegrationWidget()
@@ -92,9 +92,9 @@ void MainWindow::deleteNowCentralWidget()
     else if(st!=NULL){
         delete st;
         st=NULL;
-    }/*
+    }
     else if(eq!=NULL){
         delete eq;
+        eq=NULL;
     }
-    */
 }

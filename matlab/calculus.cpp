@@ -4,13 +4,19 @@
 #include <QLayout>
 #include "integrate.h"
 #include <iostream>
+extern "C"
+{
+    #include <my++/myhead.h>
+}
+
+
 using namespace std;
 calculus::calculus(QWidget *parent)
     :QWidget(parent)
 {
     input=new QTextEdit(this);
     input->setFixedSize(480,300);
-    input->setPlaceholderText("请输入函数（变量为x）");
+    input->setPlaceholderText("请输入函数（变量为x），乘法请使用*！");
     output=new QLabel(tr("Answer:"),this);
     output->setFixedSize(300,40);
     output->setWordWrap(true);
@@ -39,22 +45,28 @@ calculus::calculus(QWidget *parent)
     setLayout(Vlayout);
 }
 
-extern string Function;
+extern string Func;
 void calculus::Tansfer()
 {
-    Function=input->toPlainText().toStdString();
-    double x=1.7;
+    Func=input->toPlainText().toStdString();
+    double x;
     double answer_d;
     double left,right;
     QString answer;
+    gsl_function f;
+    f.function=&integrate;
+    double er;
+    unsigned int n;
+    f.params=NULL;
+
 
     try{
-        if(Function.empty()){
+        if(Func.empty()){
             TextEmpty_Error te;
             throw te;
         }
         getRange(left,right);
-        answer_d=integrate(x,NULL);
+        gsl_integration_qng(&f,left,right,1e-10,1e-10,&answer_d,&er,&n);
         answer=QString("Answer: %1").arg(answer_d, 0, 'f', 5);
     }
     catch(Empty_Error){

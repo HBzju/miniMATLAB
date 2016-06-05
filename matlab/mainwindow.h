@@ -8,6 +8,7 @@
 #include <calculus.h>
 #include <Matrix_YW.h>
 #include <option.h>
+#include "equation_xs.h"
 
 namespace Ui {
 class MainWindow;
@@ -31,7 +32,7 @@ private:
     calculus *cal;
     Matrix_YW *mt;
     option *st;
-    //equation eq;
+    equation_xs *eq;
 };
 
 #endif // MAINWINDOW_H

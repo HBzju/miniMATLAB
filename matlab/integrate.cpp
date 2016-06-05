@@ -1,5 +1,5 @@
 #include <integrate.h>
-string Function;
+string Func;
 double integrate(double x, void *params)
 {
     return tansform(x);
@@ -10,30 +10,30 @@ double tansform(double x)
     string::iterator it;
     stack<double> digit;
     stack<char> ch;
-    for(it=Function.begin();it!=Function.end();it++){
+    for(it=Func.begin();it!=Func.end();it++){
         if(Is_Single(*it)){
             Single_Operation(it,ch);
         } //单目运算符
         else if(*it=='x')digit.push(x); //x
         else if(*it=='e')digit.push(2.718281828459045); //exp
         else if(*it==' '||*it=='\t'||*it=='\n')continue;
-        else if((*it>='0'&&*it<='9')||(*it=='-'&&(it==Function.begin()||(*(it-1)=='(')))){
+        else if((*it>='0'&&*it<='9')||(*it=='-'&&(it==Func.begin()||(*(it-1)=='(')))){
             double num=0;
             double symbol=1;
             if(*it=='-'){
                 symbol=-1;
                 it++;
             }
-            for(;it!=Function.end()&&*it<='9'&&*it>='0';it++){
+            for(;it!=Func.end()&&*it<='9'&&*it>='0';it++){
                 num=num*10+*it-'0';
             }
-            if(it==Function.end()){
+            if(it==Func.end()){
                 digit.push(symbol*num);
                 break;
             }
             if(*it=='.'){
                 int i=-1;
-                for(it++;it!=Function.end()&&*it<='9'&&*it>='0';it++,i--){
+                for(it++;it!=Func.end()&&*it<='9'&&*it>='0';it++,i--){
                     num+=(*it-'0')*pow(10,i);
                 }
             }
